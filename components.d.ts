@@ -8,6 +8,10 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    Alert: typeof import('./src/components/ui/alert/Alert.vue')['default']
+    AlertDescription: typeof import('./src/components/ui/alert/AlertDescription.vue')['default']
+    AlertTitle: typeof import('./src/components/ui/alert/AlertTitle.vue')['default']
+    Badge: typeof import('./src/components/ui/badge/Badge.vue')['default']
     Button: typeof import('./src/components/ui/button/Button.vue')['default']
     Card: typeof import('./src/components/ui/card/Card.vue')['default']
     CardContent: typeof import('./src/components/ui/card/CardContent.vue')['default']
@@ -15,6 +19,15 @@ declare module 'vue' {
     CardFooter: typeof import('./src/components/ui/card/CardFooter.vue')['default']
     CardHeader: typeof import('./src/components/ui/card/CardHeader.vue')['default']
     CardTitle: typeof import('./src/components/ui/card/CardTitle.vue')['default']
+    Dialog: typeof import('./src/components/ui/dialog/Dialog.vue')['default']
+    DialogClose: typeof import('./src/components/ui/dialog/DialogClose.vue')['default']
+    DialogContent: typeof import('./src/components/ui/dialog/DialogContent.vue')['default']
+    DialogDescription: typeof import('./src/components/ui/dialog/DialogDescription.vue')['default']
+    DialogFooter: typeof import('./src/components/ui/dialog/DialogFooter.vue')['default']
+    DialogHeader: typeof import('./src/components/ui/dialog/DialogHeader.vue')['default']
+    DialogScrollContent: typeof import('./src/components/ui/dialog/DialogScrollContent.vue')['default']
+    DialogTitle: typeof import('./src/components/ui/dialog/DialogTitle.vue')['default']
+    DialogTrigger: typeof import('./src/components/ui/dialog/DialogTrigger.vue')['default']
     Input: typeof import('./src/components/ui/input/Input.vue')['default']
     Label: typeof import('./src/components/ui/label/Label.vue')['default']
     MySteps: typeof import('./src/components/MySteps.vue')['default']
@@ -48,5 +61,13 @@ declare module 'vue' {
     TabsList: typeof import('./src/components/ui/tabs/TabsList.vue')['default']
     TabsTrigger: typeof import('./src/components/ui/tabs/TabsTrigger.vue')['default']
     TheFooter: typeof import('./src/components/TheFooter.vue')['default']
+    Toast: typeof import('./src/components/ui/toast/Toast.vue')['default']
+    ToastAction: typeof import('./src/components/ui/toast/ToastAction.vue')['default']
+    ToastClose: typeof import('./src/components/ui/toast/ToastClose.vue')['default']
+    ToastDescription: typeof import('./src/components/ui/toast/ToastDescription.vue')['default']
+    Toaster: typeof import('./src/components/ui/toast/Toaster.vue')['default']
+    ToastProvider: typeof import('./src/components/ui/toast/ToastProvider.vue')['default']
+    ToastTitle: typeof import('./src/components/ui/toast/ToastTitle.vue')['default']
+    ToastViewport: typeof import('./src/components/ui/toast/ToastViewport.vue')['default']
   }
 }
