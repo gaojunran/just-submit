@@ -183,6 +183,7 @@ declare global {
   const useFullscreen: typeof import('@vueuse/core')['useFullscreen']
   const useGamepad: typeof import('@vueuse/core')['useGamepad']
   const useGeolocation: typeof import('@vueuse/core')['useGeolocation']
+  const useHomeworkStore: typeof import('./src/composables/useStore')['useHomeworkStore']
   const useId: typeof import('vue')['useId']
   const useIdle: typeof import('@vueuse/core')['useIdle']
   const useImage: typeof import('@vueuse/core')['useImage']
@@ -472,6 +473,7 @@ declare module 'vue' {
     readonly useElementHover: UnwrapRef<typeof import('@vueuse/core')['useElementHover']>
     readonly useElementSize: UnwrapRef<typeof import('@vueuse/core')['useElementSize']>
     readonly useElementVisibility: UnwrapRef<typeof import('@vueuse/core')['useElementVisibility']>
+    readonly useErrorToast: UnwrapRef<typeof import('./src/composables/useErrorToast')['useErrorToast']>
     readonly useEventBus: UnwrapRef<typeof import('@vueuse/core')['useEventBus']>
     readonly useEventListener: UnwrapRef<typeof import('@vueuse/core')['useEventListener']>
     readonly useEventSource: UnwrapRef<typeof import('@vueuse/core')['useEventSource']>
@@ -551,6 +553,7 @@ declare module 'vue' {
     readonly useStorage: UnwrapRef<typeof import('@vueuse/core')['useStorage']>
     readonly useStorageAsync: UnwrapRef<typeof import('@vueuse/core')['useStorageAsync']>
     readonly useStyleTag: UnwrapRef<typeof import('@vueuse/core')['useStyleTag']>
+    readonly useSubmissionStore: UnwrapRef<typeof import('./src/composables/useStore')['useSubmissionStore']>
     readonly useSupported: UnwrapRef<typeof import('@vueuse/core')['useSupported']>
     readonly useSwipe: UnwrapRef<typeof import('@vueuse/core')['useSwipe']>
     readonly useTemplateRef: UnwrapRef<typeof import('vue')['useTemplateRef']>
