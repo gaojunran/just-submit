@@ -13,7 +13,7 @@ export async function getState() {
     useErrorToast().error(error.message);
     return;
   }
-  if (data?.[0] === null) {
+  if (data?.[0] === undefined) {
     return store.FIRST;
   } else if (data?.[0].passkey === store.getCachedPasskey()) {
     return store.AGAIN_AUTHORIZED;

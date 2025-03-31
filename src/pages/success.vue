@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { ToggleRight, Copy } from "lucide-vue-next";
+import { ToggleRight, Copy, Eye } from "lucide-vue-next";
 import { useToast } from "@/components/ui/toast";
 // @ts-ignore
 import confetti from "canvas-confetti";
 const store = useSubmissionStore();
 
-
+const router = useRouter()
 const passkey = ref(store.inputPasskey)
 const isHide = ref(true)
 const value = computed(() => isHide.value ? ['*', '*', '*', '*', '*', '*'] : passkey.value)
@@ -24,6 +24,12 @@ const copy = () => {
   })
 }
 
+const toView = () => {
+  navigator.clipboard.writeText(passkey.value.join(''))
+  store.state = store.AGAIN_AUTHORIZED
+  router.push('/view')
+}
+
 setTimeout(() => {
   confetti({
     particleCount: 150
@@ -38,11 +44,18 @@ setTimeout(() => {
     <div class="mt-10 text-left font-bold text-2xl ">
       提交成功 🎉
     </div>
+    <Button class="w-full mt-6" @click="toView">
+      <Eye />
+      查看或覆盖作业
+    </Button>
+    <div class="mt-4 text-left text-white/50">
+      此操作会将密钥复制到剪贴板，并跳转到作业页面。
+    </div>
     <Separator class="my-8"></Separator>
     <div class="text-left text-2xl font-bold">
       密钥 🔑
     </div>
-    <div class="my-2 text-left text-white/50 font-bold">
+    <div class="my-4 text-left text-white/50">
       密钥可用于查看或替换您此次作业。请务必妥善保管好密钥！
     </div>
     <div class="flex justify-center mt-6">

@@ -22,6 +22,12 @@ router.beforeEach((to, from) => {
   if (to.path === "/success" && !store.checkSuccessRoute()) {
     return "/";
   }
+  if (to.path === "/again" && !store.checkAgainRoute()) {
+    return "/";
+  }
+  if (to.path === "/view" && !store.checkViewRoute()) {
+    return "/";
+  }
 })
 
 app.use(router)

@@ -5,12 +5,14 @@ import { getHomeworkChoices } from '@/lib/api/getHomeworkChoices';
 import { getState } from '@/lib/api/getState';
 import { IHomeworkChoices } from '@/types';
 import { Info } from 'lucide-vue-next';
+import { Loader2, ChevronRight } from 'lucide-vue-next';
 
 const store = useSubmissionStore();
 const choices = ref([] as IHomeworkChoices);
 const router = useRouter();
 const errorMsg = ref("")
 const choicesLoading = ref(true)
+const loading = ref(false)
 
 async function nextStep() {
   if (store.inputStuId.length === 0) {
@@ -25,7 +27,7 @@ async function nextStep() {
   } else {
     errorMsg.value = ""
   }
-
+  loading.value = true;
   store.cacheStuInfo();
   store.state = await getState() ?? store.FIRST;
 
@@ -81,8 +83,10 @@ onMounted(async () => {
       </div>
     </div>
     <div class="mt-2 flex flex-col items-center">
-      <Button class="w-64" @click="nextStep()">
-        下一步 🏃🏻‍♀️
+      <Button class="w-64" @click="nextStep()" :disabled="loading">
+        <Loader2 class="animate-spin" v-if="loading"  />
+        <ChevronRight v-else />
+        下一步
       </Button>
       <div class="mt-4 w-64" v-if="errorMsg">
         <div class="bg-red-800/30 rounded-lg p-2 flex gap-4 text-sm items-center">

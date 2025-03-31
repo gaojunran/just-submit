@@ -25,16 +25,18 @@ export const useSubmissionStore = defineStore('submission', () => {
     }
   })
 
+  function reset() {
+    inputStuId.value = localStorage.getItem('stuId') || ''
+    stuName.value = localStorage.getItem('stuName') || ''
+    hwId.value = -1
+    dirId.value = -1
+    inputPasskey.value = []
+    state.value = UNINITIALIZED
+  }
+
   function cacheStuInfo() {
     localStorage.setItem('stuId', stuId.value.toString())
     localStorage.setItem('stuName', stuName.value)
-  }
-
-  function resetStuInfo() {
-    inputStuId.value = ''
-    stuName.value = ''
-    localStorage.removeItem('stuId')
-    localStorage.removeItem('stuName')
   }
 
   function cachePasskey() {
@@ -54,7 +56,7 @@ export const useSubmissionStore = defineStore('submission', () => {
   }
 
   function checkViewRoute() {
-    return state.value === AGAIN_AUTHORIZED && checkFormInfo()
+    return (state.value === AGAIN_AUTHORIZED && checkFormInfo())
   }
 
   function checkUploadRoute() {
@@ -79,8 +81,8 @@ export const useSubmissionStore = defineStore('submission', () => {
     FIRST,
     AGAIN_UNAUTHORIZED,
     AGAIN_AUTHORIZED,
+    reset,
     cacheStuInfo,
-    resetStuInfo,
     cachePasskey,
     getCachedPasskey,
     checkFormInfo,

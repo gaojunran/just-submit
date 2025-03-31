@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { uploadFiles } from '@/lib/api/uploadFiles';
-import { generatePasskey, renderSize } from '@/lib/utils';
+import { generatePasskey, renderSize } from '@/lib/tools';
 import { File, X, Loader2, Upload, Plus } from 'lucide-vue-next'
 
 const loading = ref(false);
@@ -15,9 +15,9 @@ onChange((fileList: FileList | null) => {
 })
 
 async function upload() {
+  loading.value = true;
   store.dirId = Math.round(Math.random() * Number.MAX_SAFE_INTEGER);
   store.passkey = generatePasskey();
-  loading.value = true;
   await uploadFiles(files.value);
   loading.value = false;
   store.cachePasskey();
@@ -27,6 +27,11 @@ async function upload() {
 function remove(name: string) {
   files.value = [...files.value].filter(file => file.name !== name)
 }
+
+onMounted(() => {
+  console.log(files.value.length);
+
+})
 
 </script>
 

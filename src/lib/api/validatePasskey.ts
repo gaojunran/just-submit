@@ -8,7 +8,8 @@ export async function validatePasskey(passkey: string) {
                 .eq("stu_name", store.stuName)
                 .eq("hw_id", store.hwId)
                 .order("created_at", { ascending: false })
-                .single();
+                .limit(1);
   error && useErrorToast().error(error.message);
-  return result?.passkey === passkey;
+
+  return result?.[0].passkey === passkey;
 }

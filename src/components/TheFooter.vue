@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { Key, Info } from 'lucide-vue-next'
+import { Key, Info, ShieldUser } from 'lucide-vue-next'
+import { useToast } from './ui/toast'
 
 const route = useRoute()
-const isIndex = computed(() => route.path === '/')
-const isShow = computed(() => route.path === '/' || route.path === '/success')
+const router = useRouter()
+const { toast } = useToast()
 
 const toGithubProject = () => {
   window.open('https://github.com/gaojunran/just-submit')
@@ -13,11 +14,26 @@ const toGithubProfile = () => {
   window.open('https://github.com/gaojunran')
 }
 
+const toAdmin = () => {
+  router.push('/admin')
+}
+
+const copyKey = () => {
+  const key = localStorage.getItem('passkey')
+  if (key) {
+    navigator.clipboard.writeText(key)
+    toast({
+      title: '已复制缓存的密钥到剪贴板！',
+      description: '可凭此在其它设备上查看或覆盖作业。',
+    })
+  }
+}
+
 </script>
 
 <template>
 
-  <nav class="flex gap-2 justify-center text-xl mt-8" v-if="isShow">
+  <nav class="flex gap-2 justify-center text-xl mt-8">
     <Dialog>
     <DialogTrigger as-child>
       <Button variant="ghost" size="icon" class="text-white/50">
@@ -30,7 +46,7 @@ const toGithubProfile = () => {
         <DialogDescription>
           <div class="text-white/50 mt-4 text-sm/7">
             <p class="text-white/75 font-bold">
-            这是由高浚然开发的提交作业平台，用于解决作业收集的痛点问题。以下是使用时的一些常见问题：
+            以下是使用时的一些常见问题：
             </p>
             <p class="text-white/75 font-bold">1. 密钥有什么用？</p>
             <p>
@@ -57,11 +73,15 @@ const toGithubProfile = () => {
     </DialogContent>
   </Dialog>
 
+
+    <Button variant="ghost" size="icon" class="font-normal text-white/50" @click="toAdmin">
+      <ShieldUser />
+    </Button>
+    <Button variant="ghost" size="icon" class="font-normal text-white/50" @click="copyKey" >
+      <Key />
+    </Button>
     <Button variant="ghost" size="icon" class="text-white/50" @click="toGithubProject">
       <svg fill="#ffffff8f" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-    </Button>
-    <Button variant="ghost" size="icon" class="font-normal text-white/50" v-if="isIndex">
-      <Key />
     </Button>
   </nav>
 </template>
