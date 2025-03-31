@@ -11,7 +11,9 @@ import Toaster from "./components/ui/toast/Toaster.vue"
           <component :is="Component" />
         </transition>
       </router-view>
-      <TheFooter />
+      <transition name="fade" mode="out-in">
+        <TheFooter />
+      </transition>
     </div>
   </main>
 </template>
