@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useChineseTimeAgo } from '@/composables/useChineseTimeAgo';
 import { useSubmissionStore } from '@/composables/useStore'
 import { getDirId } from '@/lib/api/getDirId';
 import { getHomeworkChoices } from '@/lib/api/getHomeworkChoices';
@@ -13,6 +14,12 @@ const router = useRouter();
 const errorMsg = ref("")
 const choicesLoading = ref(true)
 const loading = ref(false)
+const timeDisplay = computed(() => {
+  return useChineseTimeAgo(choices.value
+                .map(category => category[1])
+                .flat().find(it => it.id === store.hwId)!!.end_time).value
+                .replace("in ", "")
+})
 
 async function nextStep() {
   if (store.inputStuId.length === 0) {
@@ -74,11 +81,7 @@ onMounted(async () => {
           </SelectContent>
         </Select>
         <div class="text-xs text-white/60 mt-2" v-if="store.hwId != -1 && !choicesLoading">
-          此作业将于 {{ useTimeAgo(choices
-                .map(category => category[1])
-                .flat().find(it => it.id === store.hwId)!!.end_time).value
-                .replace("in ", "")
-          }} 后截止。
+          此作业将于<span class="text-white font-bold">{{ timeDisplay }}</span>截止。
         </div>
       </div>
     </div>

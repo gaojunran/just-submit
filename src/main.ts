@@ -17,15 +17,19 @@ const store = useSubmissionStore(pinia)
 
 router.beforeEach((to, from) => {
   if (to.path === "/upload" && !store.checkUploadRoute()) {
+    store.reset();
     return "/";
   }
   if (to.path === "/success" && !store.checkSuccessRoute()) {
+    store.reset();
     return "/";
   }
   if (to.path === "/again" && !store.checkAgainRoute()) {
+    store.reset();
     return "/";
   }
   if (to.path === "/view" && !store.checkViewRoute()) {
+    store.reset();
     return "/";
   }
 })
