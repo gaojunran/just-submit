@@ -44,7 +44,7 @@ const copyKey = () => {
       <DialogHeader>
         <DialogTitle>使用说明</DialogTitle>
         <DialogDescription>
-          <div class="text-white/50 mt-4 text-sm/7">
+          <div class="text-white/50 mt-4 text-sm/7 text-left">
             <p class="text-white/75 font-bold">
             以下是使用时的一些常见问题：
             </p>
