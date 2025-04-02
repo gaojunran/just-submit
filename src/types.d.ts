@@ -12,4 +12,9 @@ interface IForm {
   hwId: number;
 }
 
+interface ISubmission extends IForm {
+  dirId: number;
+  
+}
+
 export type IHomeworkChoices = [string, IHomeworks[]][];

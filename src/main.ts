@@ -1,11 +1,11 @@
+import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import { routes } from 'vue-router/auto-routes'
-import { createPinia } from 'pinia'
-import { useSubmissionStore } from './composables'
 import App from './App.vue'
+import { useSubmissionStore } from './composables'
 
-import "./styles/main.css"
+import './styles/main.css'
 
 const app = createApp(App)
 const pinia = createPinia()
@@ -15,22 +15,22 @@ const router = createRouter({
 })
 const store = useSubmissionStore(pinia)
 
-router.beforeEach((to, from) => {
-  if (to.path === "/upload" && !store.checkUploadRoute()) {
-    store.reset();
-    return "/";
+router.beforeEach((to, _) => {
+  if (to.path === '/upload' && !store.checkUploadRoute()) {
+    store.reset()
+    return '/'
   }
-  if (to.path === "/success" && !store.checkSuccessRoute()) {
-    store.reset();
-    return "/";
+  if (to.path === '/success' && !store.checkSuccessRoute()) {
+    store.reset()
+    return '/'
   }
-  if (to.path === "/again" && !store.checkAgainRoute()) {
-    store.reset();
-    return "/";
+  if (to.path === '/again' && !store.checkAgainRoute()) {
+    store.reset()
+    return '/'
   }
-  if (to.path === "/view" && !store.checkViewRoute()) {
-    store.reset();
-    return "/";
+  if (to.path === '/view' && !store.checkViewRoute()) {
+    store.reset()
+    return '/'
   }
 })
 

@@ -16,6 +16,7 @@
     "@aws-sdk/client-s3": "^3.777.0",
     "@supabase/supabase-js": "^2.49.1",
     "@tailwindcss/vite": "^4.0.17",
+    "@tanstack/vue-table": "^8.21.2",
     "@vueuse/core": "^12.8.2",
     "canvas-confetti": "^1.9.3",
     "class-variance-authority": "^0.7.1",

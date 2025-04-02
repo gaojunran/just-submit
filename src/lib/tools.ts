@@ -2,11 +2,11 @@ export function renderSize(value: string) {
   if (value === null || value === "") {
     return "0 Bytes";
   }
-  var unitArr = new Array("Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB");
-  var index = 0;
-  var srcsize = parseFloat(value);
+  const unitArr = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+  let index = 0;
+  const srcsize = Number.parseFloat(value);
   index = Math.floor(Math.log(srcsize) / Math.log(1024));
-  var size = srcsize / Math.pow(1024, index);
+  const size = srcsize / 1024**index;
   return size.toFixed(2) + unitArr[index];
 }
 
